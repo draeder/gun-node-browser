@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with GunDB</title>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+</head>
+<body>
+    <h1>Console-based Chat with Gun DB</h1>
+    <script>
+        const gun = Gun({ peers: ["https://relay.peer.ooo/gun"] });
+
+        gun.get('chat').map().on((data, id) => {
+            console.log('Received:', data.message);
+        });
+
+        // from the console, use send("your message")
+        send = (data) => gun.get('chat').set({message: data});
+    </script>
+</body>
+</html>
